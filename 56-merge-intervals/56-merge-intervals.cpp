@@ -13,6 +13,7 @@ public:
                     done[j]=1;
                     j++;
                 }
+                i=j-1;
                 ans.push_back({st,en});
             }
         }

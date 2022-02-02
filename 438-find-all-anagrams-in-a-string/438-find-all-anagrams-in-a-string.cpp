@@ -14,7 +14,10 @@ public:
             }
             bool f=1;
             for(int j=0;j<26;j++){
-                if(x[j]!=y[j])f=0;
+                if(x[j]!=y[j]){
+                    f=0;
+                    break;
+                }
             }
             if(f)v.push_back(i);
         }

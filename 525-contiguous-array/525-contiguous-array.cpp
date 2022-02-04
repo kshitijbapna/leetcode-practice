@@ -1,19 +1,14 @@
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
-        int n=nums.size(),ans=0,sum=0;
-        map<int,int> m;
-        for(int i=0;i<n;i++){
-            if(nums[i]==0)sum--;
-            else sum++;
-            if(sum==0)ans=max(ans,i+1);
-            if(m.find(sum)==m.end()){
-                m[sum]=i;
-            }
-            else{
-                ans=max(ans,i-m[sum]);
-            }
+        vector<int> arr(2*nums.size() + 1, INT_MIN);
+		arr[nums.size()] = -1;
+        int maxLen = 0, sum = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            sum += (nums[i] == 0 ? -1 : 1);
+			if (arr[sum + nums.size()] >= -1)  maxLen = max(maxLen, i - arr[sum + nums.size()]);
+			else  arr[sum + nums.size()] = i; 
         }
-        return ans;
+        return maxLen;
     }
 };

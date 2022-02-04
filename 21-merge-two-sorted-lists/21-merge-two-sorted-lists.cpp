@@ -14,38 +14,52 @@ public:
         if(list1==NULL)return list2;        
         if(list2==NULL)return list1;
         ListNode *l=NULL,*head=NULL;
-        while(list1&&list2){
-            int val;
-            if(list1->val<list2->val){
-                val=list1->val;
-                list1=list1->next;
+        // while(list1&&list2){
+        //     int val;
+        //     if(list1->val<list2->val){
+        //         val=list1->val;
+        //         list1=list1->next;
+        //     }
+        //     else{
+        //         val=list2->val;
+        //         list2=list2->next;
+        //     }
+        //     ListNode *x=new ListNode(val);
+        //     if(l==NULL){
+        //         l=x;
+        //         head=l;
+        //     }
+        //     else{
+        //         l->next=x;
+        //         l=l->next;
+        //     }
+        // }
+        // while(list1){
+        //     ListNode *x=new ListNode(list1->val);
+        //     l->next=x;
+        //     l=l->next;
+        //     list1=list1->next;
+        // }
+        // while(list2){
+        //     ListNode *x=new ListNode(list2->val);
+        //     l->next=x;
+        //     l=l->next;
+        //     list2=list2->next;
+        // }
+        if(list1->val > list2->val)swap(list1,list2);
+        ListNode* res = list1;
+        while(list1 != NULL && list2 != NULL) {
+            ListNode* temp = NULL;
+            while(list1 != NULL && list1->val <= list2->val) {
+                temp = list1;//storing last sorted node  
+                list1 = list1->next;
             }
-            else{
-                val=list2->val;
-                list2=list2->next;
-            }
-            ListNode *x=new ListNode(val);
-            if(l==NULL){
-                l=x;
-                head=l;
-            }
-            else{
-                l->next=x;
-                l=l->next;
-            }
+
+            // link previous sorted node with 
+            // next larger node in list2
+            temp->next = list2;
+            swap(list1,list2);
         }
-        while(list1){
-            ListNode *x=new ListNode(list1->val);
-            l->next=x;
-            l=l->next;
-            list1=list1->next;
-        }
-        while(list2){
-            ListNode *x=new ListNode(list2->val);
-            l->next=x;
-            l=l->next;
-            list2=list2->next;
-        }
-        return head;
+        return res;
     }
 };

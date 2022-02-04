@@ -1,40 +1,35 @@
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        int n=nums.size();
-        sort(nums.begin(),nums.end());
-        vector<vector<int>> ans;
-        set<vector<int>> s;
-        for(int i=0;i<n;i++){
-            int l=0,r=n-1;
-            while(l<r&&l<n&&r>-1){
-                if(l==i){
-                    l++;
-                    continue;
-                }
-                if(r==i){
-                    r--;
-                    continue;
-                }
-                int x=nums[l]+nums[r]+nums[i];
-                if(!x){
-                    vector<int> xx{nums[i],nums[l],nums[r]};
-                    sort(xx.begin(),xx.end());
-                    s.insert(xx);
-                    while (l<n-1&&nums[l]==nums[l+1]) l++;
-                    while (r>=1&&nums[r]==nums[r-1]) r--;
-                    l++;
-                    r--;
-                }
-                else if(x<0){
-                    l++;
-                }
-                else{
-                    r--;
-                }
+    vector<vector<int>> threeSum(vector<int>& num) {
+         vector<vector<int>> res; 
+        sort(num.begin(), num.end()); 
+        
+        // moves for a
+        for (int i = 0; i < (int)(num.size())-2; i++) {
+            
+            if (i == 0 || (i > 0 && num[i] != num[i-1])) {
+                
+                int lo = i+1, hi = (int)(num.size())-1, sum = 0 - num[i];
+                
+                while (lo < hi) {
+                    if (num[lo] + num[hi] == sum) {
+                        
+                        vector<int> temp; 
+                        temp.push_back(num[i]); 
+                        temp.push_back(num[lo]); 
+                        temp.push_back(num[hi]); 
+                        res.push_back(temp);
+                        
+                        while (lo < hi && num[lo] == num[lo+1]) lo++;
+                        while (lo < hi && num[hi] == num[hi-1]) hi--;
+                        
+                        lo++; hi--;
+                    } 
+                    else if (num[lo] + num[hi] < sum) lo++;
+                    else hi--;
+               }
             }
         }
-        for(auto x : s)ans.push_back(x);
-        return ans;
+        return res;
     }
 };

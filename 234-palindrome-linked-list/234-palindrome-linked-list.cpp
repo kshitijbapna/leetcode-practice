@@ -10,42 +10,37 @@
  */
 class Solution {
 public:
-    ListNode *prev=NULL;
-    ListNode* mid(ListNode *head){
-        ListNode *slow=head,*fast=head;
-        while(fast!=NULL&&fast->next!=NULL){
-            prev=slow;
-            slow=slow->next;
-            fast=fast->next->next;
+    ListNode* reverse(ListNode* ptr) {
+        ListNode* pre=NULL;
+        ListNode* nex=NULL;
+        while(ptr!=NULL) {
+            nex = ptr->next;
+            ptr->next = pre;
+            pre=ptr;
+            ptr=nex;
         }
-        return slow;
-    }
-    void print(ListNode *head){
-        while(head){
-            cout<<head->val<<" ";
-            head=head->next;
-        }
-        cout<<"\n";
+        return pre;
     }
     bool isPalindrome(ListNode* head) {
-        if(head==NULL||head->next==NULL)return 1;
-        ListNode *mi=mid(head);
-        // cout<<prev->val<<" "<<mi->val<<"\n";
-        ListNode *pr=NULL,*cur=mi,*ne=NULL;
-        while(cur){
-            ne=cur->next;
-            cur->next=pr;
-            pr=cur;
-            cur=ne;
+        if(head==NULL||head->next==NULL) return true;
+        
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        while(fast->next!=NULL&&fast->next->next!=NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
         }
-        prev->next=pr;
-        // print(head);
-        ListNode *temp=pr;
-        while(temp!=head){
-            if(pr->val!=head->val)return 0;
-            head=head->next;
-            pr=pr->next;
+
+        slow->next = reverse(slow->next);
+        slow = slow->next;
+        ListNode* dummy = head;
+
+        while(slow!=NULL) {
+            if(dummy->val != slow->val) return false;
+            dummy = dummy->next;
+            slow = slow->next;
         }
-        return 1;
+        return true;
     }
 };

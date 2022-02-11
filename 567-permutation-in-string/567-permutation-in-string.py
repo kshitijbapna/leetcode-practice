@@ -4,13 +4,24 @@ class Solution:
         l2=len(s2)
         if l2<l1:
             return 0
-        s1=str(sorted(s1))
-        # print(s1)
+        x=[int(0)]*26
+        y=[int(0)]*26
+        # print(x)
+        for i in range(l1):
+            x[ord(s1[i])-ord('a')]+=1
+        # print(x)
         for i in range(l2-l1+1):
-            # print(i,i+l1)
-            s=s2[i:i+l1]
-            if str(sorted(s))==s1:
+            f=1
+            if i==0:
+                for j in range(l1):
+                    y[ord(s2[j])-ord('a')]+=1
+                if x==y:
+                    return 1
+                continue
+            y[ord(s2[i-1])-ord('a')]-=1
+            y[ord(s2[i+l1-1])-ord('a')]+=1
+            
+            if x==y:
                 return 1
-            # print(str(sorted(s)))
         # print(s)
         return 0

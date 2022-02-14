@@ -22,9 +22,6 @@ public:
             curr->next=nex->next;
             prev->next=nex;
             nex->next=curr;
-            // prev=curr;
-            // curr=curr->next;
-            
         }
         return first->next;
     }

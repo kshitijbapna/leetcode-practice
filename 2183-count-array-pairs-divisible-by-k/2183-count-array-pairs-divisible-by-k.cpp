@@ -1,7 +1,7 @@
 class Solution {
 public:
     int a[100005],fre[100005],cnt[100005];
-    long long coutPairs(vector<int>& nums, int k) {
+    long long countPairs(vector<int>& nums, int k) {
         int n=nums.size();
         vector<int> div;
         long long res=0;

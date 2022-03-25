@@ -1,11 +1,26 @@
 class Solution {
 public:
-    static bool cmp(vector<int> a,vector<int> b){
-        return a[0]*a[0]+a[1]*a[1]<b[0]*b[0]+b[1]*b[1];
-    }
-    vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
-        sort(points.begin(),points.end(),cmp);
-        points.resize(k);
-        return points;
+    vector<vector<int>> kClosest(vector<vector<int>>& p, int k) {
+        priority_queue<pair<int,pair<int,int>>> pq;
+        for(int i=0;i<p.size();i++){
+            int dis=p[i][0]*p[i][0]+p[i][1]*p[i][1];
+            if(pq.size()==k){
+                pair<int,pair<int,int>> x=pq.top();
+                if(x.first>dis){
+                    pq.pop();
+                    pq.push({dis,{p[i][0],p[i][1]}});
+                }
+            }
+            else{
+                pq.push({dis,{p[i][0],p[i][1]}});
+            }
+        }
+        vector<vector<int>> ans;
+        while(pq.size()){
+            pair<int,pair<int,int>> x=pq.top();
+            pq.pop();
+            ans.push_back({x.second.first,x.second.second});
+        }
+        return ans;
     }
 };

@@ -1,25 +1,28 @@
+auto it=[](pair<int,int> a,pair<int,int> b){
+        return a.first*a.first+a.second*a.second<b.first*b.first+b.second*b.second;
+};
 class Solution {
 public:
     vector<vector<int>> kClosest(vector<vector<int>>& p, int k) {
-        priority_queue<pair<int,pair<int,int>>> pq;
+        priority_queue<pair<int,int>,vector<pair<int,int>>,decltype(it)>pq(it);
         for(int i=0;i<p.size();i++){
             int dis=p[i][0]*p[i][0]+p[i][1]*p[i][1];
             if(pq.size()==k){
-                pair<int,pair<int,int>> x=pq.top();
-                if(x.first>dis){
+                pair<int,int> x=pq.top();
+                if(x.first*x.first+x.second*x.second>dis){
                     pq.pop();
-                    pq.push({dis,{p[i][0],p[i][1]}});
+                    pq.push({p[i][0],p[i][1]});
                 }
             }
             else{
-                pq.push({dis,{p[i][0],p[i][1]}});
+                pq.push({p[i][0],p[i][1]});
             }
         }
         vector<vector<int>> ans;
         while(pq.size()){
-            pair<int,pair<int,int>> x=pq.top();
+            pair<int,int> x=pq.top();
             pq.pop();
-            ans.push_back({x.second.first,x.second.second});
+            ans.push_back({x.first,x.second});
         }
         return ans;
     }

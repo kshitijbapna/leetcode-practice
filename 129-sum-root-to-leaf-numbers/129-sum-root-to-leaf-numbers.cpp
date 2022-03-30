@@ -12,19 +12,19 @@
 class Solution {
 public:
     int ans=0;
-    void help(TreeNode* root,string s){
+    void help(TreeNode* root,int an){
         if(root==NULL)
             return;
-        s+=to_string(root->val);
+        an=an*10+root->val;
         if(root->left==NULL&&root->right==NULL){
-            ans+=stoi(s);
+            ans+=an;
             return;
         }
-        help(root->left,s);
-        help(root->right,s);
+        help(root->left,an);
+        help(root->right,an);
     }
     int sumNumbers(TreeNode* root) {
-        help(root,"");
+        help(root,0);
         return ans;
     }
 };

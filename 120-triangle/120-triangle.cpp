@@ -5,10 +5,10 @@ public:
         if(n<0||i<0)return 0;
         if(dp[i][n]!=-1e9)return dp[i][n];
         if(i==0){
-            return dp[i][n]=tr[n][i]+fun(0,tr,n-1);
+            return dp[i][n]=tr[n][i]+fun(i,tr,n-1);
         }
         if(i==tr[n].size()){
-            return dp[i][n]=tr[n][tr[n].size()-1]+fun(tr[n].size()-1,tr,n-1);
+            return dp[i][n]=tr[n][i-1]+fun(i-1,tr,n-1);
         }
         return dp[i][n]=tr[n][i]+min(fun(i-1,tr,n-1),fun(i,tr,n-1));
     }

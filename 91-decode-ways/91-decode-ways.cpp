@@ -8,19 +8,13 @@ public:
         if(n>=1){
             string b;
             b+=s[n-1];b+=s[n];
-            // cout<<b<<"\n";
             if(stoi(b)>=10&&stoi(b)<=26){
-                // cout<<b<<"\n";
                 a1=fun(s,n-2);
             }
         }
         string b;
         b+=s[n];
-        // cout<<b<<"\n";
-        if(stoi(b)>=1){
-            // cout<<b<<"here\n";
-            a2=fun(s,n-1);
-        }
+        if(stoi(b)>=1)a2=fun(s,n-1);
         return dp[n]=a1+a2;
     }
     int numDecodings(string s) {

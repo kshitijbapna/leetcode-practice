@@ -34,7 +34,6 @@ public:
         inorder(root->right,target,k);
     }
     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
-        // cout<<dis(root,target);
         rr=root;
         td=dis(root,target);
         inorder(root,target,k);

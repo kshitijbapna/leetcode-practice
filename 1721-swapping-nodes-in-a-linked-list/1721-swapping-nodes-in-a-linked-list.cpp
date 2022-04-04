@@ -8,6 +8,8 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+static bool     _foo = ios::sync_with_stdio(false);
+static ostream* _bar = cin.tie(NULL);
 class Solution {
 public:
     ListNode* l22=NULL;
@@ -26,5 +28,3 @@ public:
         return head;
     }
 };
-static bool     _foo = ios::sync_with_stdio(false);
-static ostream* _bar = cin.tie(NULL);

@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> adj[105];
-    void dfs(int n,int &c,int vis[]){
+    void dfs(int n,int &c,int *vis){
         vis[n]=1;
         c++;
         for(auto x : adj[n]){

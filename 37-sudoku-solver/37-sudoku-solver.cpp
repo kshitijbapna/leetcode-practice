@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<char>> ans;
     bool f=0;
-    void solve(int r,int c,vector<vector<char>> a,int k){
+    void solve(int r,int c,vector<vector<char>>& a,int k){
         // cout<<r<<" "<<c<<"\n";
         if(f)return;
         k++;
@@ -36,7 +36,7 @@ public:
                 // cout<<i<<"\n";
                 a[r][c]='0'+i;
                 solve(r,c+1,a,k);
-                // a[r][c]='.';
+                a[r][c]='.';
             }
         }
     }

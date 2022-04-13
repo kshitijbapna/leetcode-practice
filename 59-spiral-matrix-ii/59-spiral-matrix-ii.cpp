@@ -1,13 +1,12 @@
 class Solution {
 public:
     vector<vector<int>> generateMatrix(int n) {
-        int kk=1;
+        int cur=1;
         vector<vector<int>> v(n,vector<int>(n,-1));
-        // return v;
         char dir='L';
         int i=0,j=0;
-        while(kk<=n*n){
-            v[i][j]=kk++;
+        while(cur<=n*n){
+            v[i][j]=cur++;
             if(dir=='L'){
                 if(j==n-1||v[i][j+1]!=-1){
                     dir='D';

@@ -28,7 +28,7 @@ public:
     }
     TreeNode* convertBST(TreeNode* root) {
         inorder1(root);
-        cout<<sum;
+        // cout<<sum;
         inorder2(root);
         return root;
     }

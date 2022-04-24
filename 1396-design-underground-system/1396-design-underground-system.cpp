@@ -24,7 +24,7 @@ public:
             // cout<<pa[{startStation,endStation}][i]<<" ";
             sum+=pa[{startStation,endStation}][i];
         }
-        cout<<"\n";
+        // cout<<"\n";
         return 1.0*sum/pa[{startStation,endStation}].size();
     }
 };

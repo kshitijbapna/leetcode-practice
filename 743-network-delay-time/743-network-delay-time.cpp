@@ -1,6 +1,6 @@
 class Solution {
 public:
-    
+    //Bellman Ford
     int networkDelayTime(vector<vector<int>>& t, int n, int k) {
         int dis[n+1];
         for(int i=0;i<=n;i++)dis[i]=INT_MAX;

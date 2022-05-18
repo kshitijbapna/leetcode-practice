@@ -13,14 +13,9 @@ public:
             if(!vis[neighbourNode]){
                 dfs(neighbourNode,currentNode);
                 lowTimes[currentNode]=min(lowTimes[currentNode],lowTimes[neighbourNode]);
-                if(times[currentNode]<lowTimes[neighbourNode]){
-                    vector<int> xx{currentNode,neighbourNode};
-                    ans.push_back(xx);
-                }
+                if(times[currentNode]<lowTimes[neighbourNode])ans.push_back({currentNode,neighbourNode});
             }
-            else{
-                lowTimes[currentNode]=min(lowTimes[currentNode],lowTimes[neighbourNode]);
-            }
+            else lowTimes[currentNode]=min(lowTimes[currentNode],lowTimes[neighbourNode]);
         }
     }
     

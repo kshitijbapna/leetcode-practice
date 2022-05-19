@@ -19,8 +19,7 @@ public:
             // cout<<pro<<" "<<nd<<"\n";
             s.erase(it);
             for(auto xx : g[nd]){
-                if(v[xx.second]>xx.first*pro){
-                    // cout<<xx.first*pro<<"\n";
+                if(v[xx.second]-xx.first*pro>0.000001){
                     s.erase(s.find({v[xx.second],xx.second}));
                     s.insert({xx.first*pro,xx.second});
                     v[xx.second]=xx.first*pro;

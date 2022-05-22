@@ -11,9 +11,7 @@ public:
                 l--;
                 r++;
             }
-        }
-        for(int i=1;i<n;i++){
-            int l=i-1,r=i;
+            l=i-1,r=i;
             while(l>=0&&r<n){
                 if(s[l]==s[r])ans++;
                 else break;

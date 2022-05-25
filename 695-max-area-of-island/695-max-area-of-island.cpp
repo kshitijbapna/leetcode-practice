@@ -6,8 +6,9 @@ public:
     void bfs(vector<vector<int>>& g,int area,int i,int j){
         int n=g.size(),m=g[0].size();
         queue<pair<int,int>> q;
+        vis[i][j]=1;
         q.push({i,j});
-        // area++;
+        area++;
         while(q.size()>0){
             pair<int,int> p=q.front();
             q.pop();
@@ -16,6 +17,7 @@ public:
                 if(xx>=0&&xx<n&&yy>=0&&yy<m&&g[xx][yy]&&vis[xx][yy]==0){
                     q.push({xx,yy});
                     vis[xx][yy]=1;
+                    // cout<<xx<<" "<<yy<<"\n";
                     area++;
                 }
             }

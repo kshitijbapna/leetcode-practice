@@ -1,5 +1,6 @@
 class Solution {
 public:
+    int dir[4][2]={{1,0},{-1,0},{0,1},{0,-1}};
     void bfs(vector<vector<int>>& h,vector<vector<bool>> &vis,int i,int j){
         if(vis[i][j])return;
         int n=h.size(),m=h[0].size();
@@ -18,15 +19,10 @@ public:
             }
         }
     }
-    int dir[4][2]={{1,0},{-1,0},{0,1},{0,-1}};
     vector<vector<int>> pacificAtlantic(vector<vector<int>>& h) {
         int n=h.size(),m=h[0].size();
-        vector<vector<bool>> v1(n,vector<bool>(m,0));
-        vector<vector<bool>> v2(n,vector<bool>(m,0));
+        vector<vector<bool>> v1(n,vector<bool>(m,0)),v2(n,vector<bool>(m,0));
         vector<vector<int>> res;
-        // for(int i=0;i<n;i++)v1[i][0]=1,v2[i][m-1];
-        // for(int i=0;i<m;i++)v1[0][i]=1,v2[n-1][i];
-        
         for(int i=0;i<n;i++){
             bfs(h,v1,i,0);
             bfs(h,v2,i,m-1);

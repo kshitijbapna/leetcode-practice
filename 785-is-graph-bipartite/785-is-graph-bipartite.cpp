@@ -13,17 +13,30 @@ public:
             }
         }
     }
-    bool isBipartite(vector<vector<int>>& adj) {
-        col.resize(105);        
-        vis.resize(105);
-        if(adj[adj.size()-1].size()>0&&adj[adj.size()-1][0]==28)return 0;
-        for(int i=0;i<col.size();i++)col[i]=-1;
-        int st=-1;
-        for(int i=0;i<adj.size();i++)if(adj[i].size()>0){
-            st=adj[i][0];
-        }
-        if(st==-1)return 1;
-        dfs(adj,st,0);
-        return f;
+    bool isBipartite(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector<int> color(n); // 0: uncolored; 1: color A; -1: color B
+
+        queue<int> q; // queue, resusable for BFS    
+
+        for (int i = 0; i < n; i++) {
+          if (color[i]) continue; // skip already colored nodes
+
+          // BFS with seed node i to color neighbors with opposite color
+          color[i] = 1; // color seed i to be A (doesn't matter A or B) 
+          for (q.push(i); !q.empty(); q.pop()) {
+            int cur = q.front();
+            for (int neighbor : graph[cur]) 
+            {
+              if (!color[neighbor]) // if uncolored, color with opposite color
+              { color[neighbor] = -color[cur]; q.push(neighbor); } 
+
+              else if (color[neighbor] == color[cur]) 
+                return false; // if already colored with same color, can't be bipartite!
+            }        
+          }
+    }
+    
+    return true;
     }
 };

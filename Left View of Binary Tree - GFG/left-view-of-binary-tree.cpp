@@ -135,7 +135,7 @@ vector<int> leftView(Node *root)
    q.push(root);
    while(!q.empty()){
        int sz=q.size();
-       if(sz>0)ans.push_back(q.front()->data);
+       ans.push_back(q.front()->data);
        while(sz--){
            Node* y=q.front();
            q.pop();

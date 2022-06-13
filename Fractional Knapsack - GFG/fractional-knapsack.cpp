@@ -21,24 +21,18 @@ struct Item{
 class Solution
 {
     public:
-    static bool cmp(Item a,Item b){
-        return (1.0*a.value/a.weight)>(1.0*b.value/b.weight);
-    }
     //Function to get the maximum total value in the knapsack.
+    static bool cmp(Item i1,Item i2){
+        return 1.0*i1.value/i1.weight>1.0*i2.value/i2.weight;
+    }
     double fractionalKnapsack(int W, Item arr[], int n)
     {
-        sort(arr,arr+n,cmp);
-        int wei=0;
         double ans=0;
+        sort(arr,arr+n,cmp);
         for(int i=0;i<n;i++){
-            if(arr[i].weight<=W){
-                W-=arr[i].weight;
-                ans+=arr[i].value;
-            }
-            else{
-                ans+=((1.0*arr[i].value)/(1.0*arr[i].weight))*W;
-                break;
-            }
+            int k=min(W,arr[i].weight);
+            ans+=(1.0*k/arr[i].weight)*arr[i].value;
+            W-=k;
         }
         return ans;
     }

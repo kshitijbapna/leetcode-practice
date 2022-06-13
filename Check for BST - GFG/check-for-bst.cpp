@@ -22,19 +22,22 @@ struct Node {
 class Solution
 {
     public:
-    vector<int> in;
     //Function to check whether a Binary Tree is BST or not.
+    int prev=-1,f=1;
     void inorder(Node* root){
         if(!root)return;
         inorder(root->left);
-        in.push_back(root->data);
+        if(root->data<prev){
+            f=0;
+            return;
+        }
+        prev=root->data;
         inorder(root->right);
     }
     bool isBST(Node* root) 
     {
         inorder(root);
-        if(is_sorted(in.begin(),in.end()))return 1;
-        return 0;
+        return f;
     }
 };
 

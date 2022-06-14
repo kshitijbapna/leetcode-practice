@@ -11,7 +11,6 @@ public:
                 r=mid;
             }
         }
-        cout<<l<<" "<<r<<"\n";
         int rot=l;
         l=0,r=n-1;
         while(l<=r){

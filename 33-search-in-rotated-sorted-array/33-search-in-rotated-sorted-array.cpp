@@ -11,15 +11,18 @@ public:
                 r=mid;
             }
         }
-        
+        cout<<l<<" "<<r<<"\n";
         int rot=l;
         l=0,r=n-1;
         while(l<=r){
             int mid=(l+r)/2;
-            int rmid=(mid+rot)%n;
-            if(nums[rmid]==target)return rmid;
-            if(nums[rmid]<target)l=mid+1;
-            else r=mid-1;
+            if(nums[(mid+rot)%n]==target)return (mid+rot)%n;
+            else if(nums[(mid+rot)%n]<target){
+                l=mid+1;
+            }
+            else{
+                r=mid-1;
+            }
         }
         return -1;
     }

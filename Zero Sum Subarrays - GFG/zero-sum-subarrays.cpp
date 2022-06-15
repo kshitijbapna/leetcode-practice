@@ -13,11 +13,11 @@ class Solution{
     //Function to count subarrays with sum equal to 0.
     ll findSubarray(vector<ll> arr, int n ) {
         ll cnt=0,sum=0;
-        map<ll,ll> m;
+        map<ll,int> m;
         for(int i=0;i<n;i++){
             sum+=arr[i];
             if(sum==0)cnt++;
-            cnt+=m[sum];
+            cnt+=(long long)m[sum];
             m[sum]++;
         }
         return cnt;

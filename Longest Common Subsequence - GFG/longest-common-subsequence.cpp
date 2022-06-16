@@ -10,7 +10,7 @@ class Solution
 {
     public:
     //Function to find the length of longest common subsequence in two strings.
-    int solve(int x,int y,string s1,string s2,vector<vector<int>> &dp){
+    int solve(int x,int y,string &s1,string &s2,vector<vector<int>> &dp){
         if(x<0||y<0)return 0;
         if(dp[x][y]!=-1)return dp[x][y];
         if(s1[x]==s2[y]){

@@ -17,17 +17,17 @@ int main()
 // } Driver Code Ends
 
 int dp[21][21][21];
-int solve (string A, string B, string C, int n1, int n2, int n3)
+int solve (string &A, string &B, string &C, int n1, int n2, int n3,vector<vector<vector<int>>> &dp)
 {
     if(n1<0||n2<0||n3<0)return 0;
     if(dp[n1][n2][n3]!=-1)return dp[n1][n2][n3];
     if(A[n1]==B[n2]&&B[n2]==C[n3]){
-        return dp[n1][n2][n3]=1+solve(A,B,C,n1-1,n2-1,n3-1);
+        return dp[n1][n2][n3]=1+solve(A,B,C,n1-1,n2-1,n3-1,dp);
     }
-    return dp[n1][n2][n3]=max({solve(A,B,C,n1-1,n2,n3),solve(A,B,C,n1,n2-1,n3),solve(A,B,C,n1,n2,n3-1)});
+    return dp[n1][n2][n3]=max({solve(A,B,C,n1-1,n2,n3,dp),solve(A,B,C,n1,n2-1,n3,dp),solve(A,B,C,n1,n2,n3-1,dp)});
 }
 int LCSof3 (string A, string B, string C, int n1, int n2, int n3)
 {
-    memset(dp,-1,sizeof(dp));
-    return solve(A,B,C,n1-1,n2-1,n3-1);
+    vector<vector<vector<int>>> dp(n1,vector<vector<int>>(n2,vector<int>(n3,-1)));
+    return solve(A,B,C,n1-1,n2-1,n3-1,dp);
 }

@@ -101,7 +101,7 @@ struct Node
 class Solution
 {
 public:
-    map<int,int> m;
+    unordered_map<int,int> m;
     int ans=0,xx;
     void in1(Node* root){
         if(!root)return;

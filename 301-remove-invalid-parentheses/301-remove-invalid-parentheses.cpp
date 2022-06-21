@@ -7,23 +7,18 @@ public:
             st--;
             if(st<0)return 0;
         }
-        if(st!=0)return 0;
-        return 1;
+        return st==0;
     }
     vector<string> removeInvalidParentheses(string s) {
         queue<string> q;
-        map<string,int> m;
-        set<string> ss;
+        unordered_map<string,int> m;
+        unordered_set<string> ss;
         q.push(s);
-        // int yy=10;
         while(!q.empty()){
-            // yy--;
-            // if(!yy)break;
             int sz=q.size();
             while(sz--){
                 string x=q.front();
                 q.pop();
-                // cout<<x<<"\n";
                 if(valid(x))ss.insert(x);
                 if(ss.size()==0)
                 for(int i=0;i<x.size();i++){
@@ -32,7 +27,6 @@ public:
                         y.erase(y.begin()+i);
                     }
                     if(m[y]==0){
-                        // cout<<y<<" ";
                         m[y]=1;
                         q.push(y);
                     }
@@ -40,7 +34,6 @@ public:
             }
             if(ss.size()>0)break;
         }
-        // cout<<ss.size()<<"\n";
         return vector<string>{ss.begin(),ss.end()};
     }
 };

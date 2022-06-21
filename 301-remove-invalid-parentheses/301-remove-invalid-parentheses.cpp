@@ -12,15 +12,15 @@ public:
     vector<string> removeInvalidParentheses(string s) {
         queue<string> q;
         unordered_map<string,int> m;
-        unordered_set<string> ss;
+        vector<string> ans;
         q.push(s);
         while(!q.empty()){
             int sz=q.size();
             while(sz--){
                 string x=q.front();
                 q.pop();
-                if(valid(x))ss.insert(x);
-                if(ss.size()==0)
+                if(valid(x))ans.push_back(x);
+                if(ans.size()==0)
                 for(int i=0;i<x.size();i++){
                     string y=x;
                     if(y[i]=='('||y[i]==')'){
@@ -32,8 +32,8 @@ public:
                     }
                 }
             }
-            if(ss.size()>0)break;
+            if(ans.size()>0)break;
         }
-        return vector<string>{ss.begin(),ss.end()};
+        return ans;
     }
 };

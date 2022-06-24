@@ -12,13 +12,13 @@ public:
           vis[node] = 1;
           vvis[node] = 1;
           
-          for(int i = 0;i<adj[node].size();i++)
+          for(auto nbr : adj[node])
           {
-              if(vis[adj[node][i]] == 0)
+              if(vis[nbr] == 0)
               {
-                  if(detectcycle(adj[node][i])) return true;
+                  if(detectcycle(nbr)) return true;
               }
-              else if(vvis[adj[node][i]])
+              else if(vvis[nbr])
               {
                   return true;
               }

@@ -6,13 +6,28 @@ using namespace std;
 class Solution
 {
 	public:
+	    int nextPermutation(string &S){
+	        int n=S.size(),k,l;
+	        for(k=n-2;k>=0;k--){
+	            if(S[k]<S[k+1])break;
+	        }
+	        if(k<0)return -1;
+	        for(l=n-1;l>k;l--){
+	            if(S[l]>S[k])break;
+	        }
+	        swap(S[l],S[k]);
+	        reverse(S.begin()+k+1,S.end());
+	        return 1;
+	    }
+	    
 		vector<string>find_permutation(string S)
 		{
 		    sort(S.begin(),S.end());
 		    vector<string> ans;
-		    do{
+		    ans.push_back(S);
+		    while(nextPermutation(S)!=-1){
 		        ans.push_back(S);
-		    }while(next_permutation(S.begin(),S.end()));
+		    }
 		    return ans;
 		}
 };

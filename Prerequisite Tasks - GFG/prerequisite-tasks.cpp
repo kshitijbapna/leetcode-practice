@@ -35,12 +35,8 @@ public:
         memset(vis,0,sizeof(vis));
         memset(vis,0,sizeof(vvis));
         
-        for(int i = 0;i<p;i++)
-        {
-            int a , b;
-            a = pre[i].first ;
-            b = pre[i].second;
-            adj[b].push_back(a);
+        for(auto p : pre){
+            adj[p.first].push_back(p.second);
         }
         
         for(int i = 0;i<N;i++)

@@ -1,5 +1,5 @@
 # Prerequisite Tasks
-## Medium 
+##  Medium 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">There are a total of N tasks, labeled from 0 to N-1. Some tasks may have prerequisites, for example to do task 0 you have to first complete task 1, which is expressed as a pair: [0, 1]<br>
 Given the total number of <strong>tasks N</strong> and a list of <strong>prerequisite pairs P</strong>, find if it is possible to finish all tasks.</span></p>

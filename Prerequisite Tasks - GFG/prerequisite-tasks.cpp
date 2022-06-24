@@ -5,7 +5,8 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
 public:
-    bool detectcycle(vector<int> adj[],int n,vector<int> &vis,vector<int> &vvis,int node)
+    int vis[10004];
+    bool detectcycle(vector<int> adj[],int n,vector<int> &vvis,int node)
       {
           vis[node] = 1;
           vvis[node] = 1;
@@ -14,7 +15,7 @@ public:
           {
               if(vis[adj[node][i]] == 0)
               {
-                  if(detectcycle(adj,n,vis,vvis,adj[node][i])) return true;
+                  if(detectcycle(adj,n,vvis,adj[node][i])) return true;
               }
               else if(vvis[adj[node][i]])
               {
@@ -30,6 +31,7 @@ public:
         // Code here
         vector<int> adj[N];
         int p = pre.size();
+        memset(vis,0,sizeof(vis));
         
         for(int i = 0;i<p;i++)
         {
@@ -39,13 +41,13 @@ public:
             adj[b].push_back(a);
         }
         
-        vector<int> vis(N,0) ,vvis(N,0) ;
+        vector<int> vvis(N,0) ;
         
         for(int i = 0;i<N;i++)
         {
             if(!vis[i])
             {
-                if(detectcycle(adj,N,vis,vvis,i)) return false;
+                if(detectcycle(adj,N,vvis,i)) return false;
             }
         }
         

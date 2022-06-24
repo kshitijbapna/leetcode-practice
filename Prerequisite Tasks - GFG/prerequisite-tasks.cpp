@@ -5,50 +5,35 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
 public:
-    vector<int> adj[10004];
-    int vis[10004],vvis[10004];
-    bool detectcycle(int node)
-      {
-          vis[node] = 1;
-          vvis[node] = 1;
-          
-          for(auto nbr : adj[node])
-          {
-              if(vis[nbr] == 0)
-              {
-                  if(detectcycle(nbr)) return 1;
-              }
-              else if(vvis[nbr])
-              {
-                  return 1;
-              }
-          }
-          vvis[node] = 0;
-          return 0;
-      }
-    
-    bool isPossible(int N, vector<pair<int, int> >& pre) 
-    {
-        // Code here
+    int vis[10004],st[10004];
+    vector<int> adj[10005];
+    bool cycle(int node){
+        vis[node]=1;
+        st[node]=1;
         
-        int p = pre.size();
-        memset(vis,0,sizeof(vis));
-        memset(vis,0,sizeof(vvis));
-        
-        for(auto p : pre){
-            adj[p.first].push_back(p.second);
-        }
-        
-        for(int i = 0;i<N;i++)
-        {
-            if(!vis[i])
-            {
-                if(detectcycle(i)) return 0;
+        for(auto nbr : adj[node]){
+            if(st[nbr])return 1;
+            else if(vis[nbr]==0){
+                bool cyc=cycle(nbr);
+                if(cyc)return 1;
             }
         }
         
-        return 1;
+        st[node]=0;
+        return 0;
     }
+	bool isPossible(int N, vector<pair<int, int> >& p) {
+	    memset(vis,0,sizeof(vis));memset(st,0,sizeof(st));
+	    for(auto x : p){
+	        adj[x.first].push_back(x.second);
+	    }
+	    for(int i=0;i<N;i++){
+	        if(vis[i]==0){
+	            if(cycle(i))return 0;
+	        }
+	    }
+	    return 1;
+	}
 };
 
 // { Driver Code Starts.

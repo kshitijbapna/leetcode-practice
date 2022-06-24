@@ -16,15 +16,15 @@ public:
           {
               if(vis[nbr] == 0)
               {
-                  if(detectcycle(nbr)) return true;
+                  if(detectcycle(nbr)) return 1;
               }
               else if(vvis[nbr])
               {
-                  return true;
+                  return 1;
               }
           }
           vvis[node] = 0;
-          return false;
+          return 0;
       }
     
     bool isPossible(int N, vector<pair<int, int> >& pre) 
@@ -43,11 +43,11 @@ public:
         {
             if(!vis[i])
             {
-                if(detectcycle(i)) return false;
+                if(detectcycle(i)) return 0;
             }
         }
         
-        return true;
+        return 1;
     }
 };
 

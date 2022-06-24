@@ -5,8 +5,9 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
 public:
+    vector<int> adj[10004];
     int vis[10004],vvis[10004];
-    bool detectcycle(vector<int> adj[],int node)
+    bool detectcycle(int node)
       {
           vis[node] = 1;
           vvis[node] = 1;
@@ -15,7 +16,7 @@ public:
           {
               if(vis[adj[node][i]] == 0)
               {
-                  if(detectcycle(adj,adj[node][i])) return true;
+                  if(detectcycle(adj[node][i])) return true;
               }
               else if(vvis[adj[node][i]])
               {
@@ -29,7 +30,7 @@ public:
     bool isPossible(int N, vector<pair<int, int> >& pre) 
     {
         // Code here
-        vector<int> adj[N];
+        
         int p = pre.size();
         memset(vis,0,sizeof(vis));
         memset(vis,0,sizeof(vvis));
@@ -46,7 +47,7 @@ public:
         {
             if(!vis[i])
             {
-                if(detectcycle(adj,i)) return false;
+                if(detectcycle(i)) return false;
             }
         }
         

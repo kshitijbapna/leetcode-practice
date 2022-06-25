@@ -1,18 +1,23 @@
 class Solution {
 public:
-    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        int tot=(1<<nums.size());
-        set<vector<int>> s;
-        for(int i=0;i<tot;i++){
-            vector<int> x;
-            for(int j=0;j<nums.size();j++){
-                if(1&(i>>j))x.push_back(nums[j]);
+    set<vector<int>> s;
+    vector<vector<int>> ans;
+    void solve(vector<int> &nums,vector<int> curr,int i){
+        if(i<0){
+            if(s.count(curr)==0){
+                ans.push_back(curr);
+                s.insert(curr);
             }
-            sort(x.begin(),x.end());
-            s.insert(x);
+            return;
         }
-        vector<vector<int>> ans;
-        for(auto x: s)ans.push_back(x);
+        solve(nums,curr,i-1);
+        curr.push_back(nums[i]);
+        solve(nums,curr,i-1);
+    }
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<int> curr;
+        sort(nums.rbegin(),nums.rend());
+        solve(nums,curr,nums.size()-1);
         return ans;
     }
 };

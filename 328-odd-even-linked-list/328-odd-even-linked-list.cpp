@@ -12,9 +12,9 @@ class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {
         ListNode *dummy_odd=new ListNode(0),*curr_odd=dummy_odd,*dummy_even=new ListNode(0),*curr_even=dummy_even;
-        int i=0;
+        int i=1;
         while(head){
-            if(i%2==0){
+            if(i%2==1){
                 curr_odd->next=head;
                 curr_odd=curr_odd->next;
             }

@@ -28,5 +28,6 @@ public:
     int countHousePlacements(int n) {
         memset(dp,-1,sizeof(dp));
         return solve(n,0,0);
+        
     }
 };

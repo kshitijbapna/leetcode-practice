@@ -1,8 +1,6 @@
 class Solution {
 public:
     int maxPoints(vector<vector<int>>& points) {
-        //(y-y1)=m*(x-x1)
-        //y=m*x-m*x1+y1
         set<pair<double,double>> s;
         sort(points.begin(),points.end());
         int n=points.size();
@@ -28,7 +26,7 @@ public:
             for(int i=0;i<n;i++){
                 double rhs=m*points[i][0]+c;
                 double lhs=points[i][1];
-                if(abs(lhs-rhs)<=0.00001)cnt++;
+                if(abs(lhs-rhs)<=0.000001)cnt++;
             }
             ans=max(ans,cnt);
         }

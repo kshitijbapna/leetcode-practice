@@ -13,13 +13,10 @@ class Solution{
   int smallestSumSubarray(vector<int>& a){
       int n=a.size(),gmin=INT_MAX,curr_min=0,f=0;
       for(int i=0;i<n;i++){
-          gmin=min(gmin,a[i]);
-          if(a[i]<0)f=1;
           curr_min+=a[i];
-          if(curr_min>=0)curr_min=0;
           gmin=min(gmin,curr_min);
+          if(curr_min>=0)curr_min=0;
       }
-      if(f==0)return *min_element(a.begin(),a.end());
       return gmin;
   }
 };

@@ -10,20 +10,19 @@ using namespace std;
 class Solution{
 public:
     int m=1003;
-    int dp[201][201][2];
-    int solve(string &s,int i,int j,bool isT){
+    int solve(string &s,int i,int j,bool isT,vector<vector<vector<int>>> &dp){
         if(i>j)return 0;
-        if(dp[i][j][isT]!=-1)return dp[i][j][isT];
         if(i==j){
             if(isT==1)return s[i]=='T';
             if(isT==0)return s[i]=='F';
         }
+        if(dp[i][j][isT]!=-1)return dp[i][j][isT];
         int ways=0;
         for(int k=i+1;k<j;k+=2){
-            int lt=solve(s,i,k-1,1);
-            int lf=solve(s,i,k-1,0);
-            int rt=solve(s,k+1,j,1);
-            int rf=solve(s,k+1,j,0);
+            int lt=solve(s,i,k-1,1,dp);
+            int lf=solve(s,i,k-1,0,dp);
+            int rt=solve(s,k+1,j,1,dp);
+            int rf=solve(s,k+1,j,0,dp);
             if(s[k]=='|'){
                 if(isT){
                     ways+=lt*rt+lt*rf+lf*rt;
@@ -40,7 +39,7 @@ public:
                     ways+=lf*rf+lt*rf+lf*rt;
                 }
             }
-            else if(s[k]=='^'){
+            else{
                 if(isT){
                     ways+=lt*rf+lf*rt;
                 }
@@ -49,11 +48,11 @@ public:
                 }
             }
         }
-        return dp[i][j][isT]=ways%1003;
+        return dp[i][j][isT]=ways%m;
     }
     int countWays(int N, string S){
-        memset(dp,-1,sizeof(dp));
-        return solve(S,0,N-1,1);
+        vector<vector<vector<int>>> dp(N,vector<vector<int>>(N,vector<int>(2,-1)));
+        return solve(S,0,N-1,1,dp);
     }
 };
 

@@ -3,7 +3,7 @@ public:
     int repeatedStringMatch(string a, string b) {
         if(a.find(b)!=string::npos)return 1;
         int l=1,r=2*b.size()/a.size(),f=0;
-        r=max(r,10);
+        r=max(r,3);
         
         while(l<=r){
             int mid=(l+r)/2,tmp=mid;

@@ -29,7 +29,7 @@ public:
             }
         }
         vector<vector<string>> res;
-        for(auto p : unions){
+        for(auto &p : unions){
             vector<string> emails(p.second.begin(),p.second.end());
             emails.insert(emails.begin(),owner[p.first]);
             res.push_back(emails);

@@ -28,7 +28,8 @@ public:
     {
         for(auto word : dict)
         words.insert(word);
-        solve(0,s,"","");
+        string t,curr;
+        solve(0,s,t,curr);
         return ans;
     }
 };

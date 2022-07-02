@@ -2,7 +2,7 @@ class Solution {
 public:
     int repeatedStringMatch(string a, string b) {
         if(a.find(b)!=string::npos)return 1;
-        int l=1,r=4*b.size()/a.size(),f=0;
+        int l=1,r=2*b.size()/a.size(),f=0;
         r=max(r,10);
         
         while(l<=r){

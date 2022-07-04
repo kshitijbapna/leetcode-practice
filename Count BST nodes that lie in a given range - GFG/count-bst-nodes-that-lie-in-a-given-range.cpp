@@ -84,20 +84,19 @@ Node* buildTree(string str)
 
 
  // } Driver Code Ends
-
 //Function to count number of nodes in BST that lie in the given range.
 class Solution{
 public:
-    void inorder(Node *root,int l,int h,int &cnt){
+    int cnt=0;
+    void inorder(Node* root,int l,int h){
         if(!root)return;
-        inorder(root->left,l,h,cnt);
+        inorder(root->left,l,h);
         if(root->data>=l&&root->data<=h)cnt++;
-        inorder(root->right,l,h,cnt);
+        inorder(root->right,l,h);
     }
     int getCount(Node *root, int l, int h)
     {
-        int cnt=0;
-        inorder(root,l,h,cnt);
+        inorder(root,l,h);   
         return cnt;
     }
 };

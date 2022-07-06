@@ -120,21 +120,25 @@ struct Node
     Node* left, * right;
 }; */
 
-map<int,vector<int>> m;
-void inorder(Node* root,int l){
-    if(!root)return;
-    inorder(root->left,l+1);
-    m[l].push_back(root->data);
-    inorder(root->right,l);
-}
 vector<int> diagonal(Node *root)
 {
-    m.clear();
-   inorder(root,0);
-   vector<int> ans;
-   for(auto x : m){
-       for(int i=0;i<x.second.size();i++)ans.push_back(x.second[i]);
-    //   cout<<"\n";
+   queue<Node*> q;
+   q.push(root);
+   vector<int> res;
+   while(!q.empty()){
+       int sz=q.size();
+    //   vector<int> ans;
+       while(sz--){
+           Node* tmp=q.front();
+           q.pop();
+           while(tmp){
+               res.push_back(tmp->data);
+               if(tmp->left)q.push(tmp->left);
+               tmp=tmp->right;
+           }
+       }
+    //   res.push_back(ans);
    }
-   return ans;
+   
+   return res;
 }

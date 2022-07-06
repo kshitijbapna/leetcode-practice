@@ -15,11 +15,27 @@ class Solution {
             if(!vis[x])dfs(adj,x,node);
         }
     }
+    void bfs(vector<int> adj[],int node){
+        queue<pair<int,int>> q;
+        q.push({node,-1});
+        vis[node]=1;
+        while(!q.empty()){
+            pair<int,int> x=q.front();
+            q.pop();
+            for(auto y : adj[x.first]){
+                if(vis[y]&&y!=x.second)cyc=1;
+                if(vis[y]==0){
+                    vis[y]=1;
+                    q.push({y,x.first});    
+                }
+            }
+        }
+    }
     bool isCycle(int V, vector<int> adj[]) {
         memset(vis,0,sizeof(vis));
         for(int i=0;i<V;i++){
             if(!vis[i]){
-                dfs(adj,i,-1);
+                bfs(adj,i);
             }
         }
         return cyc;

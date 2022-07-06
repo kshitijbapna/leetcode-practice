@@ -8,25 +8,47 @@ class Solution
 	public:
 	//Function to find the shortest distance of all the vertices
     //from the source vertex S.
+    // vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
+    // {
+    //     vector<int> dis(V,1e7);
+    //     dis[S]=0;
+    //     set<pair<int,int>> s;
+    //     for(int i=0;i<V;i++){
+    //         if(i==S)s.insert({0,S});
+    //         else s.insert({1e7,i});
+    //     }
+    //     while(!s.empty()){
+    //         pair<int,int> tmp=*s.begin();
+    //         s.erase(s.begin());
+    //         int d=tmp.first,u=tmp.second;
+    //         for(auto i : adj[u]){
+    //             int v=i[0],wt=i[1];
+    //             if(dis[v]>dis[u]+wt){
+    //                 s.erase(s.find({dis[v],v}));
+    //                 s.insert({dis[u]+wt,v});
+    //                 dis[v]=dis[u]+wt;
+    //             }
+    //         }
+    //     }
+    //     return dis;
+    // }
+    
+    //using priority queue
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
         vector<int> dis(V,1e7);
         dis[S]=0;
-        set<pair<int,int>> s;
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
         for(int i=0;i<V;i++){
-            if(i==S)s.insert({0,S});
-            else s.insert({1e7,i});
+            if(i==S)pq.push({0,S});
         }
-        while(!s.empty()){
-            pair<int,int> tmp=*s.begin();
-            s.erase(s.begin());
-            int d=tmp.first,u=tmp.second;
-            for(auto i : adj[u]){
-                int v=i[0],wt=i[1];
-                if(dis[v]>dis[u]+wt){
-                    s.erase(s.find({dis[v],v}));
-                    s.insert({dis[u]+wt,v});
-                    dis[v]=dis[u]+wt;
+        while(!pq.empty()){
+            pair<int,int> x=pq.top();
+            pq.pop();
+            for(auto neigh : adj[x.second]){
+                if(x.first+neigh[1]<dis[neigh[0]]){
+                    dis[neigh[0]]=x.first+neigh[1];
+                    pq.push({dis[neigh[0]],neigh[0]});
                 }
             }
         }

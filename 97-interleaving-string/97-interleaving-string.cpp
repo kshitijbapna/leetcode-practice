@@ -1,18 +1,19 @@
 class Solution {
 public:
-    bool solve(string &a,string &b,string &c,int n,int m,int sz,vector<vector<int>> &dp){
-        if(sz==0)return 1;
-        if(dp[n][m]!=-1)return dp[n][m];
-        int va=0,vb=0;
-        if(n-1>=0&&a[n-1]==c[sz-1])va=solve(a,b,c,n-1,m,sz-1,dp);
-        if(m-1>=0&&b[m-1]==c[sz-1])vb=solve(a,b,c,n,m-1,sz-1,dp);
+    bool solve(string &s1,string &s2,string &s3,int i,int j,int k,vector<vector<int>> &dp){
+        if(k<0)return 1;
+        if(i>=0&&j>=0&&dp[i][j]!=-1)return dp[i][j];
+        int k1=0,k2=0;
+        if(i>=0&&s1[i]==s3[k])k1=solve(s1,s2,s3,i-1,j,k-1,dp);
+        if(j>=0&&s2[j]==s3[k])k2=solve(s1,s2,s3,i,j-1,k-1,dp);
+        if(i>=0&&j>=0)return dp[i][j]=(k1||k2);
         
-        return dp[n][m]=(va|vb);
+        return (k1||k2);
     }
     bool isInterleave(string s1, string s2, string s3) {
         int n=s1.size(),m=s2.size(),k=s3.size();
         if((n+m)!=k)return 0;
-        vector<vector<int>> dp(n+1,vector<int>(m+1,-1));
-        return solve(s1,s2,s3,n,m,k,dp);
+        vector<vector<int>> dp(n,vector<int>(m,-1));
+        return solve(s1,s2,s3,n-1,m-1,k-1,dp);
     }
 };

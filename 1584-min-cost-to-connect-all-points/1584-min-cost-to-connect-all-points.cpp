@@ -1,40 +1,51 @@
 class Solution {
 public:
-    int find_set(vector<int> &parent,int n){
-        if(parent[n]==-1)return n;
-        return parent[n]=find_set(parent,parent[n]);
+    vector<pair<int,int>> adj[1001];
+    vector<int> parent;
+    int find_set(int node){
+        if(parent[node]==-1)return node;
+        return parent[node]=find_set(parent[node]);
     }
-    bool unite(vector<int> &parent,vector<int> &rank,int x,int y){
-        int s1=find_set(parent,x);
-        int s2=find_set(parent,y);
-        if(s1==s2)return 0;
-        if(rank[s1]<rank[s2]){
-            parent[s1]=s2;
-            rank[s2]+=rank[s1];
+    int union_set(int s1,int s2){
+        int p1=find_set(s1);
+        int p2=find_set(s2);
+        if(p1==p2){
+            return -1;
         }
         else{
-            parent[s2]=s1;
-            rank[s1]+=rank[s2];
+            parent[p1]=p2;
         }
         return 1;
     }
+    
     int minCostConnectPoints(vector<vector<int>>& ps) {
-        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
+        //creating the adjacency list
         for(int i=0;i<ps.size();i++){
             for(int j=i+1;j<ps.size();j++){
                 int dis=abs(ps[i][0]-ps[j][0])+abs(ps[i][1]-ps[j][1]);
-                pq.push({dis,{i,j}});
+                adj[i].push_back({dis,j});
             }
         }
-        vector<int> parent(ps.size(),-1),rank(ps.size(),1);
-        int ans=0,k=ps.size()-1;
-        while(k>0){
-            pair<int,pair<int,int>> x=pq.top();
-            pq.pop();
-            if(unite(parent,rank,x.second.first,x.second.second)){
-                ans+=x.first;
-                k--;
+        parent.resize(1001);
+        for(int i=0;i<1001;i++)parent[i]=-1;
+        // greedy
+        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>> pq;
+        for(int i=0;i<1001;i++){
+            for(auto x : adj[i]){
+                pq.push({x.first,{i,x.second}});
             }
+        }
+        int take=ps.size()-1,ans=0;
+        while(!pq.empty()){
+            auto x=pq.top();
+            pq.pop();
+            int dis=x.first;
+            int n1=x.second.first,n2=x.second.second;
+            if(union_set(n1,n2)!=-1){
+                take--;
+                ans+=dis;
+            }
+            if(take==0)break;
         }
         return ans;
     }

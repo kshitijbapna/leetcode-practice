@@ -11,17 +11,17 @@
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]
+<pre><strong>Input:</strong> beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]
 <strong>Output:</strong> 5
 <strong>Explanation:</strong> One shortest transformation sequence is "hit" -&gt; "hot" -&gt; "dot" -&gt; "dog" -&gt; cog", which is 5 words long.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><strong>Example 2:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log"]
+<pre><strong>Input:</strong> beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log"]
 <strong>Output:</strong> 0
 <strong>Explanation:</strong> The endWord "cog" is not in wordList, therefore there is no valid transformation sequence.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>

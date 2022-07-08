@@ -13,7 +13,7 @@ public:
         int n=matrix.size(),m=matrix[0].size();
     
         vector<vector<int>> x(n,vector<int>(m,0));
-        for(int i=0;i<n;i++)for(int j=0;j<m;j++)x[i][j]=(matrix[i][j]=='1')?1:-100000;
+        for(int i=0;i<n;i++)for(int j=0;j<m;j++)x[i][j]=(matrix[i][j]=='1')?1:-40000;
         for(int i=1;i<n;i++){
             for(int j=0;j<m;j++){
                 x[i][j]+=x[i-1][j];

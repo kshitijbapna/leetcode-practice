@@ -98,23 +98,32 @@ class Solution
 {
     public:
     int sum=0;
-    void in1(Node* root){
+    // void in1(Node* root){
+    //     if(!root)return;
+    //     in1(root->left);
+    //     sum+=root->data;
+    //     in1(root->right);
+    // }
+    // void in2(Node* root){
+    //     if(!root)return;
+    //     in2(root->left);
+    //     sum-=root->data;
+    //     root->data=sum;
+    //     in2(root->right);
+    // }
+    void in3(Node* root){
         if(!root)return;
-        in1(root->left);
-        sum+=root->data;
-        in1(root->right);
-    }
-    void in2(Node* root){
-        if(!root)return;
-        in2(root->left);
-        sum-=root->data;
+        in3(root->right);
+        int tmp=root->data;
         root->data=sum;
-        in2(root->right);
+        sum+=tmp;
+        in3(root->left);
     }
     void transformTree(struct Node *root)
     {
-        in1(root);
-        in2(root);
+        // in1(root);
+        // in2(root);
+        in3(root);
     }
 };
 

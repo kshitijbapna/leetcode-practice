@@ -23,7 +23,9 @@ public:
                 }
             }
             else{
+                cnt[fruits[i]]--;
                 i++;
+                
             }
             ans=max(ans,tmp);
         }

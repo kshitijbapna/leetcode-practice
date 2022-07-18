@@ -1,15 +1,15 @@
 class Solution {
 public:
     int subWithSum(vector<int> &arr,int sum){
-        unordered_map<int,int> prev_sum;
+        unordered_map<int,int> prevSum;
         int res=0,currSum=0;
         for(int i=0;i<arr.size();i++){
             currSum+=arr[i];
             if(currSum==sum)res++;
-            if(prev_sum.find(currSum-sum)!=prev_sum.end()){
-                res+=prev_sum[currSum-sum];
+            if(prevSum.find(currSum-sum)!=prevSum.end()){
+                res+=prevSum[currSum-sum];
             }
-            prev_sum[currSum]++;
+            prevSum[currSum]++;
         }
         return res;
     }

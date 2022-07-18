@@ -14,11 +14,10 @@ public:
         return res;
     }
     int numSubmatrixSumTarget(vector<vector<int>>& matrix, int target) {
-        vector<vector<int>> cpy=matrix;
         int m=matrix[0].size(),n=matrix.size();
         for(int i=1;i<n;i++){
             for(int j=0;j<m;j++){
-                cpy[i][j]+=cpy[i-1][j];
+                matrix[i][j]+=matrix[i-1][j];
             }
         }
         int ans=0;
@@ -26,10 +25,10 @@ public:
             for(int r2=r1;r2<n;r2++){
                 vector<int> arr;
                 if(r1==0){
-                    for(int i=0;i<m;i++)arr.push_back(cpy[r2][i]);
+                    for(int i=0;i<m;i++)arr.push_back(matrix[r2][i]);
                 }
                 else{
-                    for(int i=0;i<m;i++)arr.push_back(cpy[r2][i]-cpy[r1-1][i]);
+                    for(int i=0;i<m;i++)arr.push_back(matrix[r2][i]-matrix[r1-1][i]);
                 }
                 ans+=subWithSum(arr,target);
             }

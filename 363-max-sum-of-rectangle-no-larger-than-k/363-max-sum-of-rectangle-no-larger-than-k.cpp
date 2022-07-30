@@ -16,15 +16,12 @@ public:
 
             // lookup for upperbound
             // of (cSum-K) in hash
-            set<int>::iterator sit
-                = cum_set.lower_bound(cSum - K);
+            set<int>::iterator sit= cum_set.lower_bound(cSum - K);
 
             // check if upper_bound
             // of (cSum-K) exists
             // then update max sum
-            if (sit != cum_set.end())
-
-                max_sum = max(max_sum, cSum - *sit);
+            if (sit != cum_set.end())max_sum = max(max_sum, cSum - *sit);
 
             // insert cumulative value in hash
             cum_set.insert(cSum);

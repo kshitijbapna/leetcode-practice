@@ -1,11 +1,9 @@
 class Solution {
 public:
     bool isOk(vector<int> &bD,long day,long m,long k){
-        // cout<<day<<"\n";
         int done=0,i=0,n=bD.size(),gr=0,sm=0,j=0;
         while(i<n){
-            if(gr+sm==0)j=i;
-            // cout<<i<<" "<<j<<"\n";
+            // if(gr+sm==0)j=i;
             while(j<n&&gr+sm<k){
                 if(bD[j]<=day)gr++;
                 else sm++;
@@ -25,7 +23,6 @@ public:
                 i++;
                 j++;
             }
-            // cout<<i<<" "<<j<<" "<<done<<"\n";
         }
         return done>=m;
     }

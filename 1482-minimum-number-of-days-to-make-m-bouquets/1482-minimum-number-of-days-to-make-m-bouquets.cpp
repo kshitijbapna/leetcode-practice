@@ -3,7 +3,6 @@ public:
     bool isOk(vector<int> &bD,long day,long m,long k){
         int done=0,i=0,n=bD.size(),gr=0,sm=0,j=0;
         while(i<n){
-            // if(gr+sm==0)j=i;
             while(j<n&&gr+sm<k){
                 if(bD[j]<=day)gr++;
                 else sm++;
@@ -27,7 +26,8 @@ public:
         return done>=m;
     }
     int minDays(vector<int>& bloomDay, int m, int k) {
-        long l=0,r=*max_element(bloomDay.begin(),bloomDay.end());
+        
+        long l=0,r=*max_element(bloomDay.begin(),bloomDay.end()),y=r;
         while(l<=r){
             long mid=(l+r)/2;
             if(isOk(bloomDay,mid,m,k)){
@@ -36,10 +36,8 @@ public:
             else{
                 l=mid+1;
             }
-            // cout<<"\n";
         }
-        if(l==*max_element(bloomDay.begin(),bloomDay.end())+1)return -1;
-        // cout<<"\n";cout<<"\n";
+        if(l==y+1)return -1;
         return l;
     }
 };

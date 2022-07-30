@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int maX(vector<int> arr, int K)
+    int maX(vector<int> &arr, int K)
     {
         int N=arr.size();
         // Hash to lookup for value (cum_sum - K)
@@ -16,7 +16,8 @@ public:
 
             // lookup for upperbound
             // of (cSum-K) in hash
-            set<int>::iterator sit= cum_set.lower_bound(cSum - K);
+            set<int>::iterator sit
+                = cum_set.lower_bound(cSum - K);
 
             // check if upper_bound
             // of (cSum-K) exists

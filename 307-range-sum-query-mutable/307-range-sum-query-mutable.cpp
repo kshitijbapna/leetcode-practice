@@ -6,8 +6,7 @@ public:
         if(ss==se)
             return st[si]=arr[ss];
         int mid=(ss+se)/2;
-        return st[si]=construct(ss,mid,si*2+1)+
-            construct(mid+1,se,si*2+2);
+        return st[si]=construct(ss,mid,si*2+1)+construct(mid+1,se,si*2+2);
     }
     NumArray(vector<int>& nums) {
         arr=nums;
@@ -34,8 +33,7 @@ public:
         if(qs<=ss&&qe>=se)return st[si];
         if(se<qs||ss>qe)return 0;
         int mid=(ss+se)/2;
-        return sumRange(ss,mid,qs,qe,2*si+1)+
-            sumRange(mid+1,se,qs,qe,2*si+2);
+        return sumRange(ss,mid,qs,qe,2*si+1)+sumRange(mid+1,se,qs,qe,2*si+2);
     }
     int sumRange(int left, int right) {
         return sumRange(0,arr.size()-1,left,right,0);

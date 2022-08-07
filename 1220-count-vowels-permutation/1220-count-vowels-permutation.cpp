@@ -12,7 +12,7 @@ public:
             if(i==n-1){
                 return dp[x][i]=5;
             }
-            return dp[x][i]=(solve('e',i+2)+solve('a',i+2)+solve('i',i+2)+solve('i',i+1)+solve('i',i+2)+solve('u',i+2)+solve('a',i+2))%m;
+            return dp[x][i]=(solve('e',i+2)+2*solve('a',i+2)+2*solve('i',i+2)+solve('i',i+1)+solve('u',i+2))%m;
         }
         else if(prev=='a'){
             return dp[x][i]=solve('e',i+1)%m;

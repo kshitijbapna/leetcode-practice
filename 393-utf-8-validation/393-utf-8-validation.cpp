@@ -8,7 +8,7 @@ public:
             else if(x>>5==0b110)cnt++;
             else if(x>>6==0b10)cnt--;
             else{
-                if(cnt>3||cnt<0)return 0;
+                // if(cnt>3||cnt<0)return 0;
                 if(x>>7==0b1)return 0;
             }
         }

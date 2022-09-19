@@ -1,8 +1,8 @@
 class Solution {
 public:
-    map<string,vector<string>> m;
+    unordered_map<string,vector<string>> m;
     vector<vector<string>> findDuplicate(vector<string>& paths) {
-        for(auto path : paths){
+        for(auto &path : paths){
             int i=0;
             string pth;
             while(path[i]!=' ')pth+=path[i++];

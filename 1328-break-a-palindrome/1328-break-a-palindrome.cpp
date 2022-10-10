@@ -11,17 +11,27 @@ public:
     }
     string breakPalindrome(string p) {
         int n=p.size();
-        if(p.size()==1){
-            return "";
-        }
-        set<string> s;
-        for(int i=0;i<p.size();i++){
-            for(char a='a';a<='y';a++){
-                string y=p;
-                y[i]=a;
-                if(!palin(y))s.insert(y);
+        if(n==1)return "";
+        int done=0;
+        for(char x='a';x<='y';x++){
+            for(int i=0;i<n;i++){
+                if(p[i]>x){
+                    char tmp=p[i];
+                    p[i]=x;
+                    if(!palin(p)){
+                        done=1;
+                        break;
+                    }
+                    else{
+                        p[i]=tmp;
+                    }
+                }
             }
+            if(done)break;
         }
-        return *s.begin();
+        if(done==0){
+            p[n-1]='b';
+        }
+        return p;
     }
 };

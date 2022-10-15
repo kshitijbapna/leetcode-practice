@@ -1,4 +1,4 @@
-int dp[101][101][27][101];
+int dp[100][100][27][100];
 class Solution {
 public:
     

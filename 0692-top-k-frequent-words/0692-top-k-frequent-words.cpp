@@ -1,6 +1,3 @@
-// bool cmp(pair<int,string> a,pair<int,string> b){
-    
-// }
 auto cmp=[](pair<int,string> a,pair<int,string> b){
     if(a.first==b.first)return a.second>b.second;
     return a.first<b.first;

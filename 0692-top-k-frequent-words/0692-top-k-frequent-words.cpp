@@ -1,3 +1,10 @@
+// bool cmp(pair<int,string> a,pair<int,string> b){
+    
+// }
+auto cmp=[](pair<int,string> a,pair<int,string> b){
+    if(a.first==b.first)return a.second>b.second;
+    return a.first<b.first;
+};
 class Solution {
 public:
     vector<string> topKFrequent(vector<string>& words, int k) {
@@ -5,16 +12,27 @@ public:
         for(auto word : words){
             m[word]++;
         }
-        set<pair<int,string>> s;
+        set<pair<int,string>,decltype(cmp)> s(cmp);
         for(auto x : m){
-            s.insert({-x.second,x.first});
+            if(s.size()<k)
+                s.insert({x.second,x.first});
+            else{
+                if((*s.begin()).first<x.second){
+                    s.erase(s.begin());
+                    s.insert({x.second,x.first});
+                }
+                else if((*s.begin()).first==x.second&&(*s.begin()).second>x.first){
+                    s.erase(s.begin());
+                    s.insert({x.second,x.first});
+                }
+            }
         }
         vector<string> ans;
-        for(int i=0;i<k;i++){
-            string y=(*s.begin()).second;
-            ans.push_back(y);
+        while(s.size()!=0){
+            ans.push_back((*s.begin()).second);
             s.erase(s.begin());
         }
+        reverse(ans.begin(),ans.end());
         return ans;
     }
 };

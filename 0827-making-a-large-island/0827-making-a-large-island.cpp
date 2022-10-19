@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int vis[501][501];
+    vector<vector<int>> vis;
     int cnt,dir[4][2]={{1,0},{-1,0},{0,1},{0,-1}},curr=0;
     void dfs(vector<vector<int>> &g,int i,int j){
         int n=g.size(),m=g[0].size();
@@ -17,7 +17,8 @@ public:
     }
     int largestIsland(vector<vector<int>>& grid) {
         int n=grid.size(),m=grid[0].size();
-        memset(vis,-1,sizeof(vis));
+        vis=grid;
+        for(int i=0;i<n;i++)for(int j=0;j<m;j++)vis[i][j]=-1;
         map<int,int> mp;
         int ans=0;
         for(int i=0;i<grid.size();i++){

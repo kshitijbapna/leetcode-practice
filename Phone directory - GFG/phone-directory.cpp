@@ -1,10 +1,10 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 // Initial Template for C++
 
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 // User function Template for C++
 
 class Solution{
@@ -12,32 +12,27 @@ public:
     vector<vector<string>> displayContacts(int n, string contact[], string s)
     {
         map<string,set<string>> m;
+        vector<vector<string>> ans;
         for(int i=0;i<n;i++){
-            string x;
-            int j=0;
-            while(x.size()<6){
-                x+=contact[i][j++];
-                m[x].insert(contact[i]);
+            string y;
+            for(int j=0;j<6;j++){
+                y+=contact[i][j];
+                m[y].insert(contact[i]);
             }
         }
-        vector<vector<string>> ans;
-        string k;
-        int i=0;
-        while(k.size()<s.size()){
-            k+=s[i++];
-            vector<string> curr(m[k].begin(),m[k].end());
-            if(curr.size()>0)
+        string y;
+        for(int i=0;i<s.size();i++){
+            y+=s[i];
+            vector<string> curr;
+            for(auto &x : m[y])curr.push_back(x);
+            if(curr.size()==0)curr.push_back("0");
             ans.push_back(curr);
-            else{
-                curr.push_back("0");
-                ans.push_back(curr);
-            }
         }
         return ans;
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main(){
     int t;
@@ -59,4 +54,5 @@ int main(){
         }
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
